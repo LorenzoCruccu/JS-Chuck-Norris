@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sentence page</title>
+<link rel="shortcut icon" href="images\favicon.svg" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<body>
+
+<!--NavBar-->
+<nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top">
+  <a class="navbar-brand" href="#">
+   <img src="images\logoCN.jpg" 
+	alt="Chuck stolen the logo.. We're sorry" style="width:60px;">
+ </a>
+
+  <ul class="navbar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">Main Menu</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/LorenzoCruccu">My GitHub</a>
+    </li>
+
+  </ul>
+</nav>
+<!--NavBar-->
+
+<div class="container">
+	<blockquote id="sentence" class="blockquote">
+		<!--Sentence text getSentence()-->
+	</blockquote>
+</div>
+</body>
+
+<script type="text/javascript">
+	var joke = location.search.substring(1); //return the id of the joke by reading the url
+	getSentence();
+
+//getSentence will print the joke between blockquote tag, adding the footer in a simple way
+function getSentence(){ 
+	fetch('http://api.icndb.com/jokes/'+joke) //get json file with fetch API
+  .then(response => response.json())
+  .then(data => {console.log(data);
+  		document.getElementById("sentence").innerHTML= 
+		"<h1 class=\"display-4\">"+
+		data.value.joke
+		+"</h1>"+
+		"<footer class=\"blockquote-footer\">Chuck Norris</footer>";
+  		console.log(data.value.joke);
+  });
+ }
+</script>
+
+</html>
