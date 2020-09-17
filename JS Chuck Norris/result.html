@@ -49,8 +49,19 @@
 </body>
 
 <script type="text/javascript">
-	var joke = location.search.substring(1); //return the id of the joke by reading the url
+	var joke = location.search.substring(1);
+  console.log(joke);
+  console.log(isNaN(joke)); //return the id of the joke by reading the url
+  if (isNaN(joke)) {
+    document.getElementById("sentence").innerHTML=
+    "<h1 class=\"display-4\">"+
+    "An error was accured, we are sorry for the inconvenience!"
+    +"</h1>"+
+    "<footer class=\"blockquote-footer\">-Chuck says: \"Try to reload the main page\"</footer>";
+  }
+  else{
 	getSentence();
+}
 
 //getSentence will print the joke between blockquote tag, adding the footer in a simple way
 function getSentence(){ 
@@ -62,7 +73,6 @@ function getSentence(){
 		data.value.joke
 		+"</h1>"+
 		"<footer class=\"blockquote-footer\">Chuck Norris</footer>";
-  		console.log(data.value.joke);
   });
  }
 </script>
